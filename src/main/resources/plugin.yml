@@ -1,0 +1,12 @@
+name: DroppedItemsName
+main: me.nelonn.droppeditemsname.DroppedItemsNamePlugin
+version: ${projectVersion}
+author: Nelonn
+api-version: 1.17
+softdepend: [ NBTAPI, ProtocolLib ]
+
+commands:
+  droppeditemsname:
+    aliases:
+      - din
+      - droppeditems

@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'me.nelonn'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    // ProtocolLib
+    maven { url "https://repo.dmulloy2.net/repository/public/" }
+    // NBTAPI
+    maven { url = 'https://repo.codemc.org/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.7.0"
+    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.10.0'
+    compileOnly fileTree(dir: 'libs/compile', include: ['*.jar'])
+    implementation fileTree(dir: 'libs/implement', include: ['*.jar'])
+    implementation 'org.jetbrains:annotations:23.0.0'
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+}
+
+def targetJavaVersion = 16
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        options.release = targetJavaVersion
+    }
+}
+
+processResources {
+    filesNotMatching(['**/*.png', '**/*.ogg', '**/models/**', '**/textures/**']) {
+        expand projectVersion: version
+    }
+}
+
+shadowJar {
+    archiveClassifier = null
+}
+
+compileJava.dependsOn clean
+build.dependsOn shadowJar
