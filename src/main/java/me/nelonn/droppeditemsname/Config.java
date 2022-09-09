@@ -1,6 +1,6 @@
 package me.nelonn.droppeditemsname;
 
-import me.nelonn.droppeditemsname.util.ConfigWrapper;
+import me.nelonn.marelib.util.ConfigWrapper;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 

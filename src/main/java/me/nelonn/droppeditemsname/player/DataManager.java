@@ -1,10 +1,9 @@
 package me.nelonn.droppeditemsname.player;
 
-import me.nelonn.droppeditemsname.util.AutoSaver;
+import me.nelonn.marelib.util.AutoSaver;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;

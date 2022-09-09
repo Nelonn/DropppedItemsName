@@ -1,4 +1,4 @@
-package me.nelonn.droppeditemsname.item.packet;
+package me.nelonn.droppeditemsname.packet;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;

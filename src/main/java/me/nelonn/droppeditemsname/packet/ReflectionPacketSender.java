@@ -1,6 +1,6 @@
-package me.nelonn.droppeditemsname.item.packet;
+package me.nelonn.droppeditemsname.packet;
 
-import me.nelonn.droppeditemsname.util.NMSReflectionUtils;
+import me.nelonn.marelib.nms.NMSReflectionUtil;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
 import net.minecraft.network.syncher.DataWatcher;
@@ -13,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 
-@SuppressWarnings("unchecked")
 public class ReflectionPacketSender implements PacketSender {
     private static Method PlayerConnection_sendPacket;
     private static Method DataWatcher_register;
@@ -40,13 +39,13 @@ public class ReflectionPacketSender implements PacketSender {
     @Override
     public boolean setCustomNameVisible(@NotNull Player player, @NotNull org.bukkit.entity.Entity entity, boolean visible) {
         try {
-            Entity nmsEntity = (Entity) NMSReflectionUtils.getHandle(entity);
+            Entity nmsEntity = (Entity) NMSReflectionUtil.getHandle(entity);
             DataWatcher dataWatcher = new DataWatcher(nmsEntity);
             DataWatcher_register.invoke(dataWatcher, new DataWatcherObject<>(3, DataWatcherRegistry.i), visible);
 
             PacketPlayOutEntityMetadata packet = new PacketPlayOutEntityMetadata(entity.getEntityId(), dataWatcher, true);
 
-            PlayerConnection_sendPacket.invoke(((EntityPlayer) NMSReflectionUtils.getHandle(player)).b, packet);
+            PlayerConnection_sendPacket.invoke(((EntityPlayer) NMSReflectionUtil.getHandle(player)).b, packet);
 
             return true;
         } catch (Exception e) {

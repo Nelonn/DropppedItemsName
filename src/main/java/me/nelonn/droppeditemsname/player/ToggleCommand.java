@@ -1,8 +1,8 @@
 package me.nelonn.droppeditemsname.player;
 
 import me.nelonn.droppeditemsname.DroppedItemsNamePlugin;
-import me.nelonn.droppeditemsname.util.Command;
-import me.nelonn.droppeditemsname.util.TextUtils;
+import me.nelonn.marelib.text.TextUtils;
+import me.nelonn.marelib.util.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

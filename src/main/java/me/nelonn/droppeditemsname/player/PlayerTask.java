@@ -2,7 +2,7 @@ package me.nelonn.droppeditemsname.player;
 
 import me.nelonn.droppeditemsname.Config;
 import me.nelonn.droppeditemsname.DroppedItemsNamePlugin;
-import me.nelonn.droppeditemsname.item.packet.PacketSender;
+import me.nelonn.droppeditemsname.packet.PacketSender;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -36,7 +36,7 @@ public class PlayerTask implements Runnable {
         if (DroppedItemsNamePlugin.getInstance().getDataManager().getPlayerData(player) && player.getGameMode() != GameMode.SPECTATOR) {
             newItem = rayTraceItem(player.getEyeLocation(), player.getEyeLocation().getDirection(), Config.max_distance, Config.ray_size);
         }
-        PacketSender packetSender = DroppedItemsNamePlugin.getInstance().getItemUpdater();
+        PacketSender packetSender = DroppedItemsNamePlugin.getInstance().getPacketSender();
         if (item != null) {
             if (item.equals(newItem)) return;
             if (item.isValid()) {

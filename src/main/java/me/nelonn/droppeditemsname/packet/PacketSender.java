@@ -1,4 +1,4 @@
-package me.nelonn.droppeditemsname.item.packet;
+package me.nelonn.droppeditemsname.packet;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
