@@ -33,7 +33,7 @@ public class DroppedItemsNamePlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EventListener(this), this);
         Bukkit.getOnlinePlayers().forEach(PlayerTask::new);
 
-        getCommand("droppeditemsname").setExecutor(new ToggleCommand());
+        new ToggleCommand().register(this);
     }
 
     @Override

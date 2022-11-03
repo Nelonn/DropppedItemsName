@@ -13,7 +13,7 @@ public class ToggleCommand extends Command {
     private static final List<String> RUSSIAN = List.of("ru_ru", "uk_ua", "be_by", "rpr");
 
     public ToggleCommand() {
-        super("droppeditemsname");
+        super("droppeditemsname", "droppeditems", "din");
     }
 
     @Override

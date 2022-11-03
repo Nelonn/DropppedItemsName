@@ -4,8 +4,9 @@ plugins {
 }
 
 group 'me.nelonn'
-version '1.0.1'
-def targetJavaVersion = 16
+version '1.0.2'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 repositories {
     mavenCentral()
@@ -18,8 +19,8 @@ repositories {
 dependencies {
     compileOnly fileTree(dir: 'libs/compile', include: ['*.jar'])
 
-    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.7.0"
-    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.10.0'
+    compileOnly 'com.comphenix.protocol:ProtocolLib:4.7.0'
+    implementation 'de.tr7zw:item-nbt-api-plugin:2.10.0'
 
     implementation 'org.jetbrains:annotations:23.0.0'
     implementation fileTree(dir: 'libs/implement', include: ['*.jar'])
@@ -27,32 +28,18 @@ dependencies {
 
 compileJava {
     options.encoding = "UTF-8"
-}
-
-java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release = targetJavaVersion
-    }
+    dependsOn clean
 }
 
 processResources {
-    filesNotMatching(['**/*.png', '**/*.ogg', '**/models/**', '**/textures/**']) {
+    filteringCharset = "UTF-8"
+    filesNotMatching("plugin.yml") {
         expand version: version
     }
 }
 
 shadowJar {
-    archiveClassifier = null
+    classifier ''
+    relocate 'de.tr7zw.nbtapi', 'me.nelonn.droppeditemsname.shaded.nbtapi'
 }
-
-compileJava.dependsOn clean
 build.dependsOn shadowJar

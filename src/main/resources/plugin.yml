@@ -3,10 +3,4 @@ main: me.nelonn.droppeditemsname.DroppedItemsNamePlugin
 version: ${version}
 author: Nelonn
 api-version: 1.17
-softdepend: [ MareLib, NBTAPI, ProtocolLib ]
-
-commands:
-  droppeditemsname:
-    aliases:
-      - din
-      - droppeditems
+softdepend: [ProtocolLib]
