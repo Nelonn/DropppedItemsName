@@ -2,7 +2,7 @@
 
 Shows name and count of dropped items when you looking at them
 
-Optionally, you can install NBTAPI and ProtocolLib to support any version and more correct operation.
+Optionally, you can install ProtocolLib to support any version and more correct operation.
 
 <img src="https://i.imgur.com/0XAwUVa.png" alt="">
 
