@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.nelonn'
-version '1.0.2'
+version '1.0.3'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
@@ -33,7 +33,7 @@ compileJava {
 
 processResources {
     filteringCharset = "UTF-8"
-    filesNotMatching("plugin.yml") {
+    filesMatching("plugin.yml") {
         expand version: version
     }
 }
